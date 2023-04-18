@@ -14,7 +14,8 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
-    private val userRef = FirebaseDatabase.getInstance().getReference("Usuarios")
+    private val database = Firebase.database
+    private val userRef = database.getReference("usuarios")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         var btnGuardar: Button = findViewById(R.id.btnEnviar) as Button
 
-        btnGuardar.setOnClickListener{ saveMarkFromForm()}
+        btnGuardar.setOnClickListener{ saveMarkFromForm() }
 
         userRef.addChildEventListener(object: ChildEventListener {
             override fun onCancelled(databaseError: DatabaseError){}
